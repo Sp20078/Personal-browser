@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orbit, a personal browser for the curious mind.">
+  <title>Orbit — Personal browser</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="app-shell">
+    <aside class="rail" aria-label="Primary navigation">
+      <div class="brand-mark" aria-label="Orbit home">✦</div>
+      <nav class="rail-nav">
+        <button class="rail-button active" aria-label="Home" data-view="home"><span>⌂</span><small>Home</small></button>
+        <button class="rail-button" aria-label="History" data-view="history"><span>◷</span><small>History</small></button>
+        <button class="rail-button" aria-label="Bookmarks" data-view="bookmarks"><span>☆</span><small>Saved</small></button>
+      </nav>
+      <div class="rail-bottom">
+        <button class="rail-button" aria-label="Settings"><span>⚙</span><small>Setup</small></button>
+        <div class="avatar" aria-label="Profile">AM</div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="browser-header">
+        <div class="window-actions" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tabs" role="tablist" aria-label="Open tabs" id="tabs"></div>
+        <button class="new-tab" id="newTab" aria-label="Open a new tab">+</button>
+        <button class="header-action" aria-label="Open command palette" id="paletteButton">⌘K</button>
+      </header>
+
+      <section class="toolbar" aria-label="Browser toolbar">
+        <div class="history-controls">
+          <button aria-label="Go back" id="backButton">‹</button>
+          <button aria-label="Go forward" id="forwardButton">›</button>
+          <button aria-label="Reload page" id="reloadButton">↻</button>
+        </div>
+        <form class="omnibox-wrap" id="searchForm">
+          <span class="omnibox-icon" aria-hidden="true">⌕</span>
+          <input id="omnibox" autocomplete="off" spellcheck="false" placeholder="Search the web or enter a URL" aria-label="Search the web or enter a URL">
+          <button type="button" class="clear-input" id="clearInput" aria-label="Clear address bar">×</button>
+          <span class="secure-chip">✦ private</span>
+        </form>
+        <button class="toolbar-action" aria-label="Toggle theme accent" id="themeToggle">◐</button>
+        <button class="toolbar-action profile-button" aria-label="Open profile">AM</button>
+      </section>
+
+      <div class="content-grid">
+        <section class="main-content" id="mainContent" aria-live="polite">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="status-dot"></span> Your calm corner of the internet</div>
+            <h1>Make space for<br><em>what matters.</em></h1>
+            <p class="hero-subtitle">A focused browser for curious minds. Find your signal, keep your flow.</p>
+          </div>
+          <div class="quick-launch-heading"><span>Quick launch</span><button id="customizeButton">Customize <b>↗</b></button></div>
+          <div class="quick-links" id="quickLinks">
+            <button class="quick-card violet" data-url="https://linear.app" data-title="Linear"><span class="quick-icon">◈</span><span><strong>Linear</strong><small>Projects</small></span><b>↗</b></button>
+            <button class="quick-card orange" data-url="https://readwise.io" data-title="Readwise"><span class="quick-icon">◒</span><span><strong>Readwise</strong><small>Library</small></span><b>↗</b></button>
+            <button class="quick-card blue" data-url="https://github.com" data-title="GitHub"><span class="quick-icon">◉</span><span><strong>GitHub</strong><small>Code</small></span><b>↗</b></button>
+            <button class="quick-card green" data-url="https://figma.com" data-title="Figma"><span class="quick-icon">✣</span><span><strong>Figma</strong><small>Design</small></span><b>↗</b></button>
+          </div>
+          <div class="focus-card">
+            <div class="focus-icon">☼</div>
+            <div><strong>Deep work mode</strong><p>Silence distractions and stay in the flow.</p></div>
+            <button class="focus-toggle" id="focusToggle" aria-pressed="false"><span></span> Off</button>
+          </div>
+          <p class="tip"><span>✦</span> Tip: press <kbd>⌘</kbd><kbd>K</kbd> anytime to jump anywhere</p>
+        </section>
+
+        <aside class="activity-panel" aria-label="Recent activity">
+          <div class="panel-heading"><div><span class="eyebrow">YOUR ORBIT</span><h2>Recent activity</h2></div><button aria-label="More activity options">•••</button></div>
+          <div class="activity-list" id="activityList">
+            <div class="activity-item"><span class="activity-favicon purple">L</span><div><strong>Linear</strong><p>My issues · 12 min ago</p></div><button aria-label="More options">•••</button></div>
+            <div class="activity-item"><span class="activity-favicon coral">R</span><div><strong>Readwise</strong><p>Daily review · 1 hr ago</p></div><button aria-label="More options">•••</button></div>
+            <div class="activity-item"><span class="activity-favicon dark">⌁</span><div><strong>Designing for focus</strong><p>Are.na · Yesterday</p></div><button aria-label="More options">•••</button></div>
+            <div class="activity-item"><span class="activity-favicon blue">G</span><div><strong>Orbit repository</strong><p>GitHub · Yesterday</p></div><button aria-label="More options">•••</button></div>
+          </div>
+          <button class="view-all" id="viewAll">View all history <span>→</span></button>
+          <div class="storage-card"><div class="storage-top"><span>Memory lane</span><strong>68%</strong></div><div class="progress"><i></i></div><p>You're carrying a light load.</p></div>
+        </aside>
+      </div>
+      <footer class="statusbar"><span><i class="status-dot"></i> Orbit is ready</span><span>⌘K to search · <button id="accentLabel">Nebula theme</button></span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+    <div class="palette-box"><div class="palette-search"><span>⌕</span><input id="paletteInput" placeholder="Jump to a command..." aria-label="Command search"><kbd>esc</kbd></div><div class="commands"><button data-command="new"><span>＋</span> New tab <kbd>⌘T</kbd></button><button data-command="focus"><span>◌</span> Toggle focus mode <kbd>⌘⇧F</kbd></button><button data-command="theme"><span>◐</span> Change accent <kbd>⌘⇧A</kbd></button></div></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

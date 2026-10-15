@@ -1,0 +1,15 @@
+{
+  "name": "orbit-browser",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Orbit personal browser",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "preview": "python3 -m http.server 8080",
+    "test": "node --test tests/*.test.cjs"
+  },
+  "devDependencies": {
+    "electron": "^40.0.0"
+  }
+}
